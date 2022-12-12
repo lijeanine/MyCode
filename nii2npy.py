@@ -44,8 +44,18 @@ for img_name in img_names:
     else: #3.2 save to testing set
         np.save(testimg_path + str(img_name).split('.')[0] + '.npy', img_out) 
         np.save(testlabel_path + str(img_name).split('.')[0] + '_glm.npy', label_out)
-        
-        
+#---------------------------------------convert nii to npy(skip step 2)------------------------------------------------------------------    
+import nibabel as nib
+import os
+import numpy as np
+img_path = '/team_stor1/zhangchunxia/ACEnet/prepro/preprocessing/test/'
+saveimg_path = '/team_stor1/zhangchunxia/ACEnet/prepro/preprocessing/testing-imagesnpy/'
+img_names = os.listdir(img_path)
+for img_name in img_names:
+    print(img_name)
+    img = nib.load(img_path + img_name).get_data() 
+    img = np.array(img)
+    np.save(saveimg_path + str(img_name).split('.')[0] + '.npy', img)         
         
         
         
