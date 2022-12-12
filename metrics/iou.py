@@ -1,5 +1,5 @@
 # examples are in dice.py:UNetx Validation and Testing
-
+# function of iou(Intersection of Union): iou = (A & B)/(A ∪ B) 
 def score_perclass(vol_output, ground_truth, num_classes):
     dice_perclass = torch.zeros(num_classes)
     iou_perclass = torch.zeros(num_classes)
