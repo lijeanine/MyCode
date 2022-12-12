@@ -1,3 +1,4 @@
+# cut size-z (256) to smaller size (e.g:192)
 import nibabel as nib
 import os
 import numpy as np
