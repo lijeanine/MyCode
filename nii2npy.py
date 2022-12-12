@@ -1,4 +1,6 @@
 # cut size-z (256) to smaller size (e.g:192)
+# note that if u use T1, T2 images and labels together in the model, u should process these three types of nii.gz together to
+## make sure they all have the same size on axial-Z
 import nibabel as nib
 import os
 import numpy as np
