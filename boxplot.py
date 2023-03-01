@@ -17,8 +17,12 @@ df = pd.DataFrame({'CSF_BFANet-PT':parallel[:,1],'CSF_BFANet-ST':serial[:,1],'CS
                    'BS_BFANet-PT':parallel[:,8],'BS_BFANet-ST':serial[:,8],'BS_BFANet':Unit3Model[:,8],
                    'HA_BFANet-PT':parallel[:,9],'HA_BFANet-ST':serial[:,9],'HA_BFANet':Unit3Model[:,9]})
 df["id"] = df.index
-df = pd.wide_to_long(df, stubnames=['CSF','CGM','WM','VT','CB','DGM','BS','HA'], i=['id'], j='Model',sep='_',suffix='\D+').reset_index().drop('id', axis=1)
-df = df.melt(id_vars='Model',var_name='tissue',value_name='DSC')
+df = pd.wide_to_long(df, stubnames=['CSF','CGM','WM','VT','CB','DGM','BS','HA'], i=['id'], j='方法',sep='_',suffix='\D+').reset_index().drop('id', axis=1)
+df = df.melt(id_vars='方法',var_name='待分割组织',value_name='DSC')
+
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 黑体
+plt.rcParams['axes.unicode_minus'] = False    # 解决无法显示符号的问题
+#sns.set(font='SimHei', font_scale=0.8)        # 解决Seaborn中文显示问题
 
 plt.figure(dpi=200, figsize=(8, 4))
-ax=sns.boxplot(data=df, x='tissue', y='DSC', hue='Model',linewidth=1,fliersize=0,saturation=1,width=0.5)
+ax=sns.boxplot(data=df, x='待分割组织', y='DSC', hue='方法',linewidth=1,fliersize=0,saturation=1,width=0.5)
