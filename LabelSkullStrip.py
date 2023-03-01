@@ -16,5 +16,8 @@ for label_name in label_names:
             for y in range(label.shape[1]):
                 if label[x,y,slice] == 4:
                     label[x,y,slice]=0
+                elif label[x,y,slice]>4:
+                    label[x,y,slice]=label[x,y,slice]-1
+                else:continue
     new_label = nib.Nifti1Image(label,np.eye(4))
     nib.save(new_label,labelSkullStrip_path+label_name)
