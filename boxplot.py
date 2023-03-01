@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 AddMLP=np.load('./AddMLP/AddMLP.npy')
 parallel = np.load('./parallel/parallel.npy')
 serial = np.load('./serial/serial.npy')
@@ -17,4 +19,5 @@ df = pd.DataFrame({'CSF1':AddMLP[:,1],'CSF2':parallel[:,1],'CSF3':serial[:,1],'C
 df["id"] = df.index
 df = pd.wide_to_long(df, stubnames=['CSF','CGM','WM','VT','CB','DGM','BS','HA'], i=['id'], j='Model').reset_index().drop('id', axis=1)
 df = df.melt(id_vars='Model',var_name='tissue',value_name='DSC')
-sns.boxplot(data=df, x='tissue', y='DSC', hue='Model',linewidth=2,fliersize=0,saturation=1)
+plt.figure(dpi=200, figsize=(8, 4))
+ax=sns.boxplot(data=df, x='tissue', y='DSC', hue='Model',linewidth=2,fliersize=0,saturation=1,width=0.5)
