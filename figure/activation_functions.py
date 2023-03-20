@@ -77,7 +77,9 @@ class ActivateFunc():
         y = np.where(np.where(f > 1, 1, f) < 0, 0, np.where(f > 1, 1, f))
         y_grad = np.where(f > 0, np.where(f >= 1, 0, 1 / 5), 0)
         return [y, y_grad]
-
+    def Softmax(self):
+        y = np.exp(self.x)/np.sum(np.exp(self.x), axis=0)
+        return [y]
 
 def PlotActiFunc(x, y, title):
     plt.figure(dpi=300)#,figsize=(2,2))
