@@ -80,10 +80,12 @@ class ActivateFunc():
 
 
 def PlotActiFunc(x, y, title):
+    plt.figure(dpi=300)#,figsize=(2,2))
     plt.grid(which='minor', alpha=0.2)
     plt.grid(which='major', alpha=0.5)
     plt.plot(x, y)
     plt.title(title)
+    plt.savefig("E:/Users/lenovo/Desktop/loss/Prelu.jpeg", dpi=600, format="jpeg")
     plt.show()
 
 def PlotMultiFunc(x, y):
@@ -94,53 +96,11 @@ def PlotMultiFunc(x, y):
 
 if __name__ == '__main__':
     x = np.arange(-10, 10, 0.01)
-    activateFunc = ActivateFunc(x)
+    activateFunc = ActivateFunc(x,a=4)
     activateFunc.b = 1
-    PlotActiFunc(x, activateFunc.Sigmoid()[0], title='Sigmoid')
-    PlotActiFunc(x, activateFunc.Swish()[0], title='Swish')
-    PlotActiFunc(x, activateFunc.ReLU()[0], title='ReLU')
-    PlotActiFunc(x, activateFunc.Mish()[0], title='Mish')
-    PlotActiFunc(x, activateFunc.Mish()[1], title='Mish-grad')
-    PlotActiFunc(x, activateFunc.Swish()[1], title='Swish-grad')
-
-    plt.figure(1)
-    PlotMultiFunc(x, activateFunc.Mish()[1])
-    PlotMultiFunc(x, activateFunc.Swish()[1])
-    plt.legend(['Mish-grad', 'Swish-grad'])
-    plt.figure(2)
-
-    PlotMultiFunc(x, activateFunc.Swish()[0])
-    PlotMultiFunc(x, activateFunc.Mish()[0])
-    plt.legend(['Swish', 'Mish'])
-
-    plt.figure(3)
-    PlotMultiFunc(x, activateFunc.Swish()[0])
-    PlotMultiFunc(x, activateFunc.Hard_Swish()[0])
-    plt.legend(['Swish', 'Hard-Swish'])
-
-    plt.figure(4)
-    PlotMultiFunc(x, activateFunc.Sigmoid()[0])
-    PlotMultiFunc(x, activateFunc.Hard_Sigmoid()[0])
-    plt.legend(['Sigmoid', 'Hard-Sigmoid'])
-
-    plt.figure(5)
-    PlotMultiFunc(x, activateFunc.ReLU()[0])
-    PlotMultiFunc(x, activateFunc.ReLU6()[0])
-    plt.legend(['ReLU', 'ReLU6'])
-
-    plt.figure(6)
-    PlotMultiFunc(x, activateFunc.Swish()[1])
-    PlotMultiFunc(x, activateFunc.Hard_Swish()[1])
-    plt.legend(['Swish-grad', 'Hard-Swish-grad'])
-
-    plt.figure(7)
-    PlotMultiFunc(x, activateFunc.Sigmoid()[1])
-    PlotMultiFunc(x, activateFunc.Hard_Sigmoid()[1])
-    plt.legend(['Sigmoid-grad', 'Hard-Sigmoid-grad'])
-
-    plt.figure(8)
-    PlotMultiFunc(x, activateFunc.ReLU()[1])
-    PlotMultiFunc(x, activateFunc.ReLU6()[1])
-    plt.legend(['ReLU-grad', 'ReLU6-grad'])
-
-    plt.show()
+    #PlotActiFunc(x, activateFunc.Sigmoid()[0], title='Sigmoid')
+    #PlotActiFunc(x, activateFunc.Swish()[0], title='Swish')
+    PlotActiFunc(x, activateFunc.PReLU()[0], title='PReLU')
+    #PlotActiFunc(x, activateFunc.Mish()[0], title='Mish')
+    #PlotActiFunc(x, activateFunc.Mish()[1], title='Mish-grad')
+    #PlotActiFunc(x, activateFunc.Swish()[1], title='Swish-grad')
