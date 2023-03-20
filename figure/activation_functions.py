@@ -81,13 +81,14 @@ class ActivateFunc():
         y = np.exp(self.x)/np.sum(np.exp(self.x), axis=0)
         return [y]
 
-def PlotActiFunc(x, y, title):
+def PlotActiFunc(x, y, title,filename):
     plt.figure(dpi=300)#,figsize=(2,2))
     plt.grid(which='minor', alpha=0.2)
     plt.grid(which='major', alpha=0.5)
     plt.plot(x, y)
     plt.title(title)
-    plt.savefig("E:/Users/lenovo/Desktop/loss/Prelu.jpeg", dpi=600, format="jpeg")
+    plt.rc ( 'font' ,family= 'Times New Roman')
+    plt.savefig(filename, dpi=600, format="jpeg")
     plt.show()
 
 def PlotMultiFunc(x, y):
@@ -98,11 +99,13 @@ def PlotMultiFunc(x, y):
 
 if __name__ == '__main__':
     x = np.arange(-10, 10, 0.01)
-    activateFunc = ActivateFunc(x,a=4)
+    activateFunc = ActivateFunc(x,a=4)#,a=4
     activateFunc.b = 1
-    #PlotActiFunc(x, activateFunc.Sigmoid()[0], title='Sigmoid')
+    PlotActiFunc(x, activateFunc.Sigmoid()[0], title='Sigmoid',filename="E:/Users/lenovo/Desktop/loss/Sigmoid.jpeg")
+    PlotActiFunc(x, activateFunc.Softmax()[0], title='Softmax',filename="E:/Users/lenovo/Desktop/loss/Softmax.jpeg")
     #PlotActiFunc(x, activateFunc.Swish()[0], title='Swish')
-    PlotActiFunc(x, activateFunc.PReLU()[0], title='PReLU')
+    PlotActiFunc(x, activateFunc.ReLU()[0], title='ReLU',filename="E:/Users/lenovo/Desktop/loss/ReLU.jpeg")
+    PlotActiFunc(x, activateFunc.PReLU()[0], title='PReLU',filename="E:/Users/lenovo/Desktop/loss/PReLU.jpeg")
     #PlotActiFunc(x, activateFunc.Mish()[0], title='Mish')
     #PlotActiFunc(x, activateFunc.Mish()[1], title='Mish-grad')
     #PlotActiFunc(x, activateFunc.Swish()[1], title='Swish-grad')
